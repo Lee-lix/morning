@@ -35,7 +35,7 @@ def get_birthday():
   return (next - today).days
 
 #男朋友的生日
-def get_birthday():
+def get_birthday1():
   next = datetime.strptime(str(date.today().year) + "-" + birthday1, "%Y-%m-%d")
   if next < datetime.now():
     next = next.replace(year=next.year + 1)
