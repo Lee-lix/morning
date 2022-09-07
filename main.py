@@ -11,6 +11,7 @@ start_date = os.environ['START_DATE']
 city = os.environ['CITY']
 birthday = os.environ['BIRTHDAY']
 birthday1 = os.environ['BIRTHDAY1']
+cpa_day=os.environ['cpa_day']
 
 app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
@@ -42,6 +43,11 @@ def get_birthday1():
     next = next.replace(year=next.year + 1)
   return (next - today).days
 
+#CPA的考试时间统计
+def get_cpa_count():
+  delta = today - datetime.strptime(cpa_day, "%Y-%m-%d")
+  return delta.day
+
 def get_words():
   words = requests.get("https://api.shadiao.pro/chp")
   if words.status_code != 200:
@@ -56,6 +62,6 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
-data = {"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"birthday_left1":{"value":get_birthday1()},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"birthday_left1":{"value":get_birthday1()},"cpa_days":{"value":get_count()},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
