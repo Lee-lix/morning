@@ -45,7 +45,7 @@ def get_birthday1():
 
 #CPA的考试时间统计
 def get_cpa_count():
-  delta = today - datetime.strptime(cpa_date, "%Y-%m-%d")
+  delta = datetime.strptime(cpa_date, "%Y-%m-%d") - today
   return delta.days
 
 def get_words():
