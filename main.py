@@ -11,7 +11,7 @@ start_date = os.environ['START_DATE']
 city = os.environ['CITY']
 birthday = os.environ['BIRTHDAY']
 birthday1 = os.environ['BIRTHDAY1']
-cpa_day=os.environ['CPA_DATE']
+cpa_date=os.environ['CPA_DATE']
 
 app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
@@ -45,7 +45,7 @@ def get_birthday1():
 
 #CPA的考试时间统计
 def get_cpa_count():
-  delta = today - datetime.strptime(cpa_day, "%Y-%m-%d")
+  delta = today - datetime.strptime(cpa_date, "%Y-%m-%d")
   return delta.day
 
 def get_words():
